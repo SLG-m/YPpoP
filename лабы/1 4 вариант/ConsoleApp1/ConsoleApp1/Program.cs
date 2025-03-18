@@ -2,9 +2,9 @@
 
 public class Firearm
 {
-    public string Name { get; set; }
-    public float Caliber { get; set; }
-    public double Range { get; set; }
+    public string Name;
+    public float Caliber;
+    public double Range;
 
     public Firearm(string name, float caliber, double range)
     {
@@ -25,6 +25,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        Firearm q = new Firearm("АК-47", 7.62f, 800.0);
 
+        q.DisplayInfo();
     }
 }
