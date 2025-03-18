@@ -25,8 +25,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Firearm q = new Firearm("АК-47", 7.62f, 800.0);
 
-        q.DisplayInfo();
     }
 }
