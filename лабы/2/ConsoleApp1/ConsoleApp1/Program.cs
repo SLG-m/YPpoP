@@ -202,24 +202,106 @@ public class MyApplication
 
     private void AddShip()
     {
-        Console.Write("Введите название корабля: ");
-        string name = Console.ReadLine();
-        Console.Write("Введите водоизмещение: ");
-        double displacement = double.Parse(Console.ReadLine());
-        Console.Write("Введите тип: ");
-        string type = Console.ReadLine();
+        string name;
+        while (true)
+        {
+            Console.Write("Введите название корабля: ");
+            name = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Название корабля не может быть пустым.");
+            }
+        }
+
+        double displacement;
+        while (true)
+        {
+            Console.Write("Введите водоизмещение: ");
+            try
+            {
+                displacement = Convert.ToDouble(Console.ReadLine());
+                if (displacement > 0)
+                    break;
+                else
+                    Console.WriteLine("Ошибка: Введите положительное число для водоизмещения.");
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка: Введите корректное число для водоизмещения.");
+            }
+        }
+
+        string type;
+        while (true)
+        {
+            Console.Write("Введите тип: ");
+            type = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Тип корабля не может быть пустым.");
+            }
+        }
 
         shipList.AddShip(new Ship(name, displacement, type));
     }
 
     private void UpdateCurrentShip()
     {
-        Console.Write("Введите новое название корабля: ");
-        string name = Console.ReadLine();
-        Console.Write("Введите новое водоизмещение: ");
-        double displacement = double.Parse(Console.ReadLine());
-        Console.Write("Введите новый тип: ");
-        string type = Console.ReadLine();
+        string name;
+        while (true)
+        {
+            Console.Write("Введите новое название корабля: ");
+            name = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Название корабля не может быть пустым.");
+            }
+        }
+
+        double displacement;
+        while (true)
+        {
+            Console.Write("Введите новое водоизмещение: ");
+            try
+            {
+                displacement = Convert.ToDouble(Console.ReadLine());
+                if (displacement > 0)
+                    break;
+                else
+                    Console.WriteLine("Ошибка: Введите положительное число для водоизмещения.");
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка: Введите корректное число для водоизмещения.");
+            }
+        }
+
+        string type;
+        while (true)
+        {
+            Console.Write("Введите новый тип: ");
+            type = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: Тип корабля не может быть пустым.");
+            }
+        }
 
         shipList.UpdateCurrentShip(name, displacement, type);
     }
