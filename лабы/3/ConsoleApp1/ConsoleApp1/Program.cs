@@ -2,10 +2,8 @@
 
 public class Matrix2 : ICloneable
 {
-    // Закрытые поля для хранения элементов матрицы
     private double a11, a12, a21, a22;
 
-    // Конструктор, принимающий два элемента побочной диагонали (остальные элементы равны 1)
     public Matrix2(double a12, double a21)
     {
         this.a11 = 1;
@@ -14,7 +12,6 @@ public class Matrix2 : ICloneable
         this.a22 = 1;
     }
 
-    // Конструктор, принимающий все элементы матрицы
     public Matrix2(double a11, double a12, double a21, double a22)
     {
         this.a11 = a11;
@@ -23,19 +20,16 @@ public class Matrix2 : ICloneable
         this.a22 = a22;
     }
 
-    // Метод для клонирования объекта
     public object Clone()
     {
         return new Matrix2(this.a11, this.a12, this.a21, this.a22);
     }
 
-    // Метод для вычисления определителя матрицы
     public double Det()
     {
         return a11 * a22 - a12 * a21;
     }
 
-    // Метод для нахождения обратной матрицы
     public Matrix2 Inverse()
     {
         double det = Det();
@@ -47,7 +41,6 @@ public class Matrix2 : ICloneable
         return new Matrix2(a22 / det, -a12 / det, -a21 / det, a11 / det);
     }
 
-    // Перегрузка оператора сложения матриц
     public static Matrix2 operator +(Matrix2 m1, Matrix2 m2)
     {
         return new Matrix2(
@@ -58,7 +51,6 @@ public class Matrix2 : ICloneable
         );
     }
 
-    // Перегрузка оператора умножения матриц
     public static Matrix2 operator *(Matrix2 m1, Matrix2 m2)
     {
         return new Matrix2(
@@ -69,7 +61,6 @@ public class Matrix2 : ICloneable
         );
     }
 
-    // Переопределение метода ToString для удобного вывода матрицы
     public override string ToString()
     {
         return $"[{a11}, {a12}]\n[{a21}, {a22}]";
@@ -78,13 +69,16 @@ public class Matrix2 : ICloneable
 
 public class MyApplication
 {
+    private Matrix2 matrix1;
+    private Matrix2 matrix2;
+
     public void Run()
     {
         while (true)
         {
-            Console.WriteLine("1. Создать матрицу");
-            Console.WriteLine("2. Вычислить определитель");
-            Console.WriteLine("3. Найти обратную матрицу");
+            Console.WriteLine("1. Создать две матрицы");
+            Console.WriteLine("2. Вычислить определитель первой матрицы");
+            Console.WriteLine("3. Найти обратную матрицу для первой матрицы");
             Console.WriteLine("4. Сложить две матрицы");
             Console.WriteLine("5. Умножить две матрицы");
             Console.WriteLine("6. Выйти");
@@ -95,7 +89,7 @@ public class MyApplication
             switch (choice)
             {
                 case 1:
-                    CreateMatrix();
+                    CreateMatrices();
                     break;
                 case 2:
                     CalculateDeterminant();
@@ -118,30 +112,44 @@ public class MyApplication
         }
     }
 
-    private void CreateMatrix()
+    private void CreateMatrices()
     {
-        Console.Write("Введите элемент a12: ");
-        double a12 = double.Parse(Console.ReadLine());
-        Console.Write("Введите элемент a21: ");
-        double a21 = double.Parse(Console.ReadLine());
+        Console.WriteLine("Введите элементы первой матрицы:");
+        matrix1 = GetMatrix();
+        Console.WriteLine("Первая матрица создана:\n" + matrix1);
 
-        Matrix2 matrix = new Matrix2(a12, a21);
-        Console.WriteLine("Матрица создана:\n" + matrix);
+        Console.WriteLine("Введите элементы второй матрицы:");
+        matrix2 = GetMatrix();
+        Console.WriteLine("Вторая матрица создана:\n" + matrix2);
     }
 
     private void CalculateDeterminant()
     {
-        Matrix2 matrix = GetMatrix();
-        Console.WriteLine("Определитель матрицы: " + matrix.Det());
+        if (matrix1 == null)
+        {
+            Console.WriteLine("Матрицы не созданы. Сначала создайте матрицы.");
+            return;
+        }
+
+        // Используем клонированную матрицу для вычисления определителя
+        Matrix2 clonedMatrix = (Matrix2)matrix1.Clone();
+        Console.WriteLine("Определитель первой матрицы: " + clonedMatrix.Det());
     }
 
     private void FindInverse()
     {
-        Matrix2 matrix = GetMatrix();
+        if (matrix1 == null)
+        {
+            Console.WriteLine("Матрицы не созданы. Сначала создайте матрицы.");
+            return;
+        }
+
         try
         {
-            Matrix2 inverseMatrix = matrix.Inverse();
-            Console.WriteLine("Обратная матрица:\n" + inverseMatrix);
+            // Используем клонированную матрицу для нахождения обратной матрицы
+            Matrix2 clonedMatrix = (Matrix2)matrix1.Clone();
+            Matrix2 inverseMatrix = clonedMatrix.Inverse();
+            Console.WriteLine("Обратная матрица для первой матрицы:\n" + inverseMatrix);
         }
         catch (InvalidOperationException ex)
         {
@@ -151,10 +159,11 @@ public class MyApplication
 
     private void AddMatrices()
     {
-        Console.WriteLine("Введите первую матрицу:");
-        Matrix2 matrix1 = GetMatrix();
-        Console.WriteLine("Введите вторую матрицу:");
-        Matrix2 matrix2 = GetMatrix();
+        if (matrix1 == null || matrix2 == null)
+        {
+            Console.WriteLine("Матрицы не созданы. Сначала создайте матрицы.");
+            return;
+        }
 
         Matrix2 result = matrix1 + matrix2;
         Console.WriteLine("Результат сложения:\n" + result);
@@ -162,10 +171,11 @@ public class MyApplication
 
     private void MultiplyMatrices()
     {
-        Console.WriteLine("Введите первую матрицу:");
-        Matrix2 matrix1 = GetMatrix();
-        Console.WriteLine("Введите вторую матрицу:");
-        Matrix2 matrix2 = GetMatrix();
+        if (matrix1 == null || matrix2 == null)
+        {
+            Console.WriteLine("Матрицы не созданы. Сначала создайте матрицы.");
+            return;
+        }
 
         Matrix2 result = matrix1 * matrix2;
         Console.WriteLine("Результат умножения:\n" + result);
@@ -184,7 +194,7 @@ public class MyApplication
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         MyApplication app = new MyApplication();
         app.Run();
