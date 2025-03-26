@@ -4,29 +4,22 @@ class Program
 {
     static void Main()
     {
-        // Пример вещественного массива
-        double[] array = { 1.5, 2.3, 3.7, 4.1, 5.9, 6.2, 7.4, 8.0, 9.6, 10.8 };
+        char[] array = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
+        Console.WriteLine("Исходный массив: " + string.Join(", ", array));
 
-        // Вычисление среднего арифметического
-        double sum = 0;
-        foreach (double num in array)
-        {
-            sum += num;
-        }
-        double average = sum / array.Length;
+        // Создаем новый массив для результата
+        char[] result = new char[array.Length];
+        int evenIndex = 0; // Индекс для четных позиций (1-ая половина)
+        int oddIndex = array.Length / 2; // Индекс для нечетных позиций (2-ая половина)
 
-        // Подсчет элементов, меньших среднего
-        int count = 0;
-        foreach (double num in array)
+        for (int i = 0; i < array.Length; i++)
         {
-            if (num < average)
-            {
-                count++;
-            }
+            if (i % 2 == 0) // Четная позиция (индексация с 0)
+                result[evenIndex++] = array[i];
+            else // Нечетная позиция
+                result[oddIndex++] = array[i];
         }
 
-        // Вывод результата
-        Console.WriteLine($"Среднее арифметическое: {average}");
-        Console.WriteLine($"Количество элементов меньше среднего: {count}");
+        Console.WriteLine("Результат: " + string.Join(", ", result));
     }
 }
