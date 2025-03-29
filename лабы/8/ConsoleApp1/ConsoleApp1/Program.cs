@@ -46,11 +46,13 @@ class Program
 
         int lastPos = 0;
 
-        var matches = acronymRegex.Matches(text).Cast<Match>()
-            .Concat(capitalizedRegex.Matches(text).Cast<Match>())
-            .Concat(numberRegex.Matches(text).Cast<Match>())
-            .OrderBy(m => m.Index)
-            .ToList();
+        List<Match> matches = new List<Match>();
+
+        matches.AddRange(acronymRegex.Matches(text));
+        matches.AddRange(capitalizedRegex.Matches(text));
+        matches.AddRange(numberRegex.Matches(text));
+
+        matches.Sort((a, b) => a.Index.CompareTo(b.Index));
 
         foreach (var match in matches)
         {
