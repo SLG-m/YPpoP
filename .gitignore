@@ -1,0 +1,43 @@
+## Файлы сборки и бинарные файлы ##
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.lib
+*.exp
+*.ilk
+*.nupkg
+*.suo
+
+## Файлы пользовательских настроек VS ##
+*.user
+*.userosscache
+*.sln.docstates
+
+## Файлы резервных копий ##
+*.bak
+*.tmp
+*.~*
+
+## Папки пакетов и кэша ##
+[Nn]uget/
+packages/
+.vs/
+.vscode/
+.ionide/
+
+## Файлы тестов и покрытия кода ##
+TestResults/
+*.coverage
+*.opencover.xml
+
+## Файлы проектов и решений ##
+*.aps
+*.dotCover
+*.jfm
+
+## Специфичные для .NET файлы ##
+appsettings.*.json  # Игнорировать локальные конфиги (но не основной appsettings.json)
+secrets.json        # Игнорировать файлы с секретами
