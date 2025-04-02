@@ -131,7 +131,6 @@ public class MyApplication
             return;
         }
 
-        // Используем клонированную матрицу для вычисления определителя
         Matrix2 clonedMatrix = (Matrix2)matrix1.Clone();
         Console.WriteLine("Определитель первой матрицы: " + clonedMatrix.Det());
     }
@@ -146,7 +145,6 @@ public class MyApplication
 
         try
         {
-            // Используем клонированную матрицу для нахождения обратной матрицы
             Matrix2 clonedMatrix = (Matrix2)matrix1.Clone();
             Matrix2 inverseMatrix = clonedMatrix.Inverse();
             Console.WriteLine("Обратная матрица для первой матрицы:\n" + inverseMatrix);

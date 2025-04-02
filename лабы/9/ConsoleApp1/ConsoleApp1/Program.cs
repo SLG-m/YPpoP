@@ -14,7 +14,7 @@ namespace MobilePhoneCollection
         Other
     }
 
-    struct MobilePhone
+     struct MobilePhone
     {
         public string Model;
         public int Year;

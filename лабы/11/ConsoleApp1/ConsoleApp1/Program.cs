@@ -120,12 +120,12 @@ class Program
     static void Main(string[] args)
     {
         // Создаем объекты всех производных классов
-        var mp3Player = new MP3Player("Sony", "NW-A105", 2019, "аккумулятор", true, true, 16);
-        var tapeRecorder = new TapeRecorder("Panasonic", "RX-D55", 1995, 2, true, true, true);
-        var musicCenter = new MusicCenter("LG", "CM4360", 2010, 1, 5, 1000);
+        MP3Player mp3Player = new MP3Player("Sony", "NW-A105", 2019, "аккумулятор", true, true, 16);
+        TapeRecorder tapeRecorder = new TapeRecorder("Panasonic", "RX-D55", 1995, 2, true, true, true);
+        MusicCenter musicCenter = new MusicCenter("LG", "CM4360", 2010, 1, 5, 1000);
 
         // Создаем копию MP3-плеера (реализован ICloneable)
-        var mp3PlayerClone = (MP3Player)mp3Player.Clone();
+        MP3Player mp3PlayerClone = (MP3Player)mp3Player.Clone();
         mp3PlayerClone.Model = "NW-A105 (Clone)";
 
         // Выводим информацию обо всех объектах
