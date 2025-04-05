@@ -41,7 +41,7 @@ class Program
             }
         }
 
-        // Поиск двух столбцов с максимальной суммой (без LINQ)
+        // Поиск двух столбцов с максимальной суммой
         int maxCol1 = 0;
         int maxCol2 = 1;
 
@@ -103,9 +103,8 @@ class Program
             $"Приоритет: {currentThread.Priority}"
         );
 
-        Thread.Sleep(150); // Имитация сложных вычислений
+        Thread.Sleep(150);
 
-        // Безопасное изменение данных (каждый поток работает только со своей строкой)
         matrix[row, firstMaxColumn] -= k;
         matrix[row, secondMaxColumn] -= k;
     }
