@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 public class Ship
 {
@@ -156,7 +155,7 @@ public class ShipList
                 return;
             }
 
-            var newShips = new LinkedList<Ship>();
+            LinkedList<Ship> newShips = new LinkedList<Ship>();
             using (StreamReader reader = new StreamReader(filePath))
             {
                 string line;
@@ -260,7 +259,6 @@ public class MyApplication
                     shipList.LoadFromFile(DataFilePath);
                     break;
                 case "14":
-                    // Сохранение данных при выходе
                     shipList.SaveToFile(DataFilePath);
                     return;
                 default:
