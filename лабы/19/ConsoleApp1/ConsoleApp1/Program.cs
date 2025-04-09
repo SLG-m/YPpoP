@@ -1,513 +1,170 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.IO;
 
-public class Ship
+namespace ShipsCollection
 {
-    public string Name { get; set; }
-    public double Vodoizmesc { get; set; }
-    public string Type { get; set; }
-
-    public Ship(string name, double vodoizmesc, string type)
+    class Ship
     {
-        Name = name;
-        Vodoizmesc = vodoizmesc;
-        Type = type;
-    }
+        public string Name { get; set; }
+        public double Displacement { get; set; }
+        public string Type { get; set; }
 
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Имя: {Name}, Водоизмещение: {Vodoizmesc} тонн, Тип: {Type}");
-    }
-}
-
-public class ShipList
-{
-    private LinkedList<Ship> ships = new LinkedList<Ship>();
-    private LinkedListNode<Ship> currentElement;
-
-    public void AddShip(Ship ship)
-    {
-        ships.AddLast(ship);
-        if (currentElement == null) currentElement = ships.First;
-    }
-
-    public void RemoveCurrentShip()
-    {
-        if (currentElement == null)
+        public Ship(string name, double displacement, string type)
         {
-            Console.WriteLine("Список пустой");
-            return;
+            Name = name;
+            Displacement = displacement;
+            Type = type;
         }
 
-        LinkedListNode<Ship> nextElement;
-        if (currentElement.Next != null)
+        public override string ToString()
         {
-            nextElement = currentElement.Next;
-        }
-        else
-        {
-            nextElement = ships.First;
-        }
-
-        ships.Remove(currentElement);
-        currentElement = nextElement;
-    }
-
-    public void MoveToFirst()
-    {
-        currentElement = ships.First;
-    }
-
-    public void MoveToLast()
-    {
-        currentElement = ships.Last;
-    }
-
-    public void MoveNext()
-    {
-        if (currentElement?.Next != null)
-            currentElement = currentElement.Next;
-    }
-
-    public void MovePrevious()
-    {
-        if (currentElement?.Previous != null)
-            currentElement = currentElement.Previous;
-    }
-
-    public Ship GetCurrentShip()
-    {
-        return currentElement?.Value;
-    }
-
-    public void UpdateCurrentShip(string name, double vodoizmesc, string type)
-    {
-        if (currentElement != null)
-        {
-            currentElement.Value.Name = name;
-            currentElement.Value.Vodoizmesc = vodoizmesc;
-            currentElement.Value.Type = type;
+            return $"Корабль: {Name}, Водоизмещение: {Displacement} тонн, Тип: {Type}";
         }
     }
 
-    public void SortByDisplacement(bool ascending = true)
+    class Program
     {
-        var list = new List<Ship>(ships);
-
-        if (ascending)
+        static void Main(string[] args)
         {
-            list.Sort(Asc);
-        }
-        else
-        {
-            list.Sort(Desc);
-        }
+            // Создание коллекции кораблей
+            List<Ship> ships = new List<Ship>()
+            {
+                new Ship("Титаник", 52310, "Пассажирский"),
+                new Ship("50 лет Победы", 25000,"Ледокол"),
+                new Ship("Адмирал Кузнецов", 61390, "Авианосец"),
+                new Ship("Пётр Великий", 25860, "Крейсер"),
+                new Ship("AIDAblu", 71290, "Круизный"),
+                new Ship("Москва", 12500, "Ракетный крейсер"),
+                new Ship("Севморпуть", 61880, "Контейнеровоз"),
+                new Ship("Ямал", 23455, "Ледокол")
+            };
 
-        ships = new LinkedList<Ship>(list);
-        currentElement = ships.First;
-    }
+            // Проверка на корректность данных
+            bool isValid = ships.All(s => s.Displacement > 0 && !string.IsNullOrEmpty(s.Name) && !string.IsNullOrEmpty(s.Type));
+            Console.WriteLine($"Все данные кораблей корректны: {isValid}\n");
 
-    private int Asc(Ship x, Ship y)
-    {
-        return x.Vodoizmesc.CompareTo(y.Vodoizmesc);
-    }
+            // Извлечение корабля
+            Ship extracted = ships.FirstOrDefault(s => s.Name == "Титаник");
+            if (extracted != null)
+            {
+                Console.WriteLine($"Извлеченный корабль: {extracted}\n");
+            }
 
-    private int Desc(Ship x, Ship y)
-    {
-        return y.Vodoizmesc.CompareTo(x.Vodoizmesc);
-    }
+            // Вывод всех кораблей
+            Console.WriteLine("Все корабли:");
+            Print(ships);
 
-    public void PrintAllShips()
-    {
-        foreach (var ship in ships)
-        {
-            ship.DisplayInfo();
-        }
-    }
+            // LINQ операции
 
-    public void SaveToFile(string filePath)
-    {
-        try
-        {
+            // Фильтрация (водоизмещение больше 30000 тонн)
+            Console.WriteLine("\nКорабли с водоизмещением > 30000 тонн:");
+            var query1 = from ship in ships
+                         where ship.Displacement > 30000
+                         select ship;
+            Print(query1);
+
+            // Проекция (только имена кораблей)
+            Console.WriteLine("\nИмена кораблей:");
+            var query2 = from ship in ships
+                         select ship.Name;
+            Print(query2);
+
+            // Сортировка по водоизмещению (по возрастанию)
+            Console.WriteLine("\nСортировка по водоизмещению (по возрастанию):");
+            var query3 = from ship in ships
+                         orderby ship.Displacement
+                         select ship;
+            Print(query3);
+
+            // Сортировка по водоизмещению (по убыванию)
+            Console.WriteLine("\nСортировка по водоизмещению (по убыванию):");
+            query3 = from ship in ships
+                     orderby ship.Displacement descending
+                     select ship;
+            Print(query3);
+
+            // Агрегатные операции
+            Console.WriteLine($"\nСреднее водоизмещение: {ships.Average(s => s.Displacement):F2} тонн");
+            Console.WriteLine($"Максимальное водоизмещение: {ships.Max(s => s.Displacement)} тонн");
+            Console.WriteLine($"Минимальное водоизмещение: {ships.Min(s => s.Displacement)} тонн");
+            Console.WriteLine($"Суммарное водоизмещение: {ships.Sum(s => s.Displacement)} тонн");
+
+            // Группировка по типу корабля
+            var shipGroups = ships.GroupBy(s => s.Type);
+            Console.WriteLine("\nГруппировка по типу корабля:");
+            foreach (var group in shipGroups)
+            {
+                Console.WriteLine($"Тип: {group.Key}");
+                Print(group);
+            }
+
+            // Соединение коллекций
+            string[] russianShips = { "Адмирал Кузнецов", "Пётр Великий", "Москва", "Севморпуть", "Ямал", "50 лет Победы" };
+
+            var russianFleet = from ship in ships
+                               join name in russianShips on ship.Name equals name
+                               select ship;
+
+            Console.WriteLine("\nРоссийские корабли:");
+            Print(russianFleet);
+
+            // Сохранение результатов в файл
+            string filePath = "ships_report.txt";
             using (StreamWriter writer = new StreamWriter(filePath))
             {
+                writer.WriteLine("Отчет по кораблям:");
                 foreach (var ship in ships)
                 {
-                    writer.WriteLine($"{ship.Name}|{ship.Vodoizmesc}|{ship.Type}");
+                    writer.WriteLine(ship);
                 }
-            }
-            Console.WriteLine("Данные успешно сохранены в файл.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Ошибка при сохранении в файл: {ex.Message}");
-        }
-    }
 
-    public void LoadFromFile(string filePath)
-    {
-        try
-        {
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Файл не существует.");
-                return;
-            }
+                writer.WriteLine("\nСтатистика:");
+                writer.WriteLine($"Среднее водоизмещение: {ships.Average(s => s.Displacement):F2} тонн");
+                writer.WriteLine($"Максимальное водоизмещение: {ships.Max(s => s.Displacement)} тонн");
+                writer.WriteLine($"Минимальное водоизмещение: {ships.Min(s => s.Displacement)} тонн");
+                writer.WriteLine($"Суммарное водоизмещение: {ships.Sum(s => s.Displacement)} тонн");
 
-            LinkedList<Ship> newShips = new LinkedList<Ship>();
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                writer.WriteLine("\nКорабли с водоизмещением > 30000 тонн:");
+                foreach (var ship in query1)
                 {
-                    var parts = line.Split('|');
-                    if (parts.Length == 3 &&
-                        double.TryParse(parts[1], out double displacement) &&
-                        displacement > 0)
-                    {
-                        newShips.AddLast(new Ship(parts[0], displacement, parts[2]));
-                    }
+                    writer.WriteLine(ship);
                 }
-            }
 
-            ships = newShips;
-            currentElement = ships.First;
-            Console.WriteLine("Данные успешно загружены из файла.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Ошибка при загрузке из файла: {ex.Message}");
-        }
-    }
-
-    // LINQ методы для задания 2
-    public void LinqQueries()
-    {
-        if (!ships.Any())
-        {
-            Console.WriteLine("Коллекция кораблей пуста.");
-            return;
-        }
-
-        // Фильтрация: корабли с водоизмещением больше 10000 тонн
-        var bigShips = ships.Where(s => s.Vodoizmesc > 10000);
-        Console.WriteLine("\nКорабли с водоизмещением > 10000 тонн:");
-        foreach (var ship in bigShips)
-        {
-            ship.DisplayInfo();
-        }
-
-        // Проекция: только имена и типы кораблей
-        var namesAndTypes = ships.Select(s => new { s.Name, s.Type });
-        Console.WriteLine("\nИмена и типы кораблей:");
-        foreach (var item in namesAndTypes)
-        {
-            Console.WriteLine($"{item.Name} - {item.Type}");
-        }
-
-        // Сортировка по имени
-        var sortedByName = ships.OrderBy(s => s.Name);
-        Console.WriteLine("\nКорабли, отсортированные по имени:");
-        foreach (var ship in sortedByName)
-        {
-            ship.DisplayInfo();
-        }
-
-        // Агрегатные операции
-        Console.WriteLine("\nАгрегатные данные:");
-        Console.WriteLine($"Всего кораблей: {ships.Count()}");
-        Console.WriteLine($"Суммарное водоизмещение: {ships.Sum(s => s.Vodoizmesc)} тонн");
-        Console.WriteLine($"Среднее водоизмещение: {ships.Average(s => s.Vodoizmesc):0.00} тонн");
-        Console.WriteLine($"Максимальное водоизмещение: {ships.Max(s => s.Vodoizmesc)} тонн");
-        Console.WriteLine($"Минимальное водоизмещение: {ships.Min(s => s.Vodoizmesc)} тонн");
-
-        // Группировка по типу
-        var shipsByType = ships.GroupBy(s => s.Type);
-        Console.WriteLine("\nКорабли по типам:");
-        foreach (var group in shipsByType)
-        {
-            Console.WriteLine($"\nТип: {group.Key}");
-            foreach (var ship in group)
-            {
-                ship.DisplayInfo();
-            }
-        }
-
-        // Соединение с другой коллекцией (пример)
-        var shipTypes = new[]
-        {
-            new { Code = "Tanker", Description = "Танкер" },
-            new { Code = "Cargo", Description = "Грузовой" },
-            new { Code = "Military", Description = "Военный" }
-        };
-
-        var joinedData = from ship in ships
-                         join type in shipTypes on ship.Type equals type.Code
-                         select new { ship.Name, ship.Vodoizmesc, TypeDescription = type.Description };
-
-        Console.WriteLine("\nСоединенные данные с описанием типов:");
-        foreach (var item in joinedData)
-        {
-            Console.WriteLine($"{item.Name}, {item.Vodoizmesc} тонн, {item.TypeDescription}");
-        }
-
-        // Сохранение результатов LINQ в файл
-        SaveLinqResultsToFile("linq_results.txt", bigShips, namesAndTypes, sortedByName, shipsByType, joinedData);
-    }
-
-    private void SaveLinqResultsToFile(string filePath, params object[] results)
-    {
-        try
-        {
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                foreach (var result in results)
+                writer.WriteLine("\nРоссийские корабли:");
+                foreach (var ship in russianFleet)
                 {
-                    writer.WriteLine($"=== {result.GetType().Name} ===");
-
-                    if (result is IEnumerable<Ship> shipEnumerable)
-                    {
-                        foreach (var ship in shipEnumerable)
-                        {
-                            writer.WriteLine($"{ship.Name}|{ship.Vodoizmesc}|{ship.Type}");
-                        }
-                    }
-                    else if (result is IEnumerable<dynamic> dynamicEnumerable)
-                    {
-                        foreach (var item in dynamicEnumerable)
-                        {
-                            // Обработка сгруппированных данных
-                            if (item is IGrouping<string, Ship> shipGroup)
-                            {
-                                writer.WriteLine($"\nГруппа: {shipGroup.Key}");
-                                foreach (var ship in shipGroup)
-                                {
-                                    writer.WriteLine($"  {ship.Name}|{ship.Vodoizmesc}|{ship.Type}");
-                                }
-                            }
-                            else
-                            {
-                                writer.WriteLine(item.ToString());
-                            }
-                        }
-                    }
-
-                    writer.WriteLine();
+                    writer.WriteLine(ship);
                 }
             }
-            Console.WriteLine($"Результаты LINQ запросов сохранены в {filePath}");
+
+            Console.WriteLine($"\nРезультаты сохранены в файл: {filePath}");
         }
-        catch (Exception ex)
+
+        // Методы для вывода коллекций
+        public static void Print(List<Ship> elements)
         {
-            Console.WriteLine($"Ошибка при сохранении результатов LINQ: {ex.Message}");
+            foreach (var element in elements)
+            {
+                Console.WriteLine(element);
+            }
         }
-    }
-}
 
-public class MyApplication
-{
-    private ShipList shipList = new ShipList();
-    private const string DataFilePath = "ships_data.txt";
-
-    public void Run()
-    {
-        // Загрузка данных при запуске
-        shipList.LoadFromFile(DataFilePath);
-
-        while (true)
+        public static void Print(IEnumerable<Ship> elements)
         {
-            Console.WriteLine("\nМеню:");
-            Console.WriteLine("1. Добавить корабль");
-            Console.WriteLine("2. Удалить текущий корабль");
-            Console.WriteLine("3. Перейти к началу списка");
-            Console.WriteLine("4. Перейти к концу списка");
-            Console.WriteLine("5. Перейти к следующему кораблю");
-            Console.WriteLine("6. Перейти к предыдущему кораблю");
-            Console.WriteLine("7. Получить текущий корабль");
-            Console.WriteLine("8. Установить новое значение текущего корабля");
-            Console.WriteLine("9. Сортировать по водоизмещению (по возрастанию)");
-            Console.WriteLine("10. Сортировать по водоизмещению (по убыванию)");
-            Console.WriteLine("11. Вывести все корабли");
-            Console.WriteLine("12. Сохранить данные в файл");
-            Console.WriteLine("13. Загрузить данные из файла");
-            Console.WriteLine("14. Выполнить LINQ запросы");
-            Console.WriteLine("15. Выйти");
-
-            Console.Write("Выберите действие: ");
-            string choice = Console.ReadLine();
-
-            switch (choice)
+            foreach (var element in elements)
             {
-                case "1":
-                    AddShip();
-                    break;
-                case "2":
-                    shipList.RemoveCurrentShip();
-                    break;
-                case "3":
-                    shipList.MoveToFirst();
-                    break;
-                case "4":
-                    shipList.MoveToLast();
-                    break;
-                case "5":
-                    shipList.MoveNext();
-                    break;
-                case "6":
-                    shipList.MovePrevious();
-                    break;
-                case "7":
-                    var currentShip = shipList.GetCurrentShip();
-                    if (currentShip != null)
-                        currentShip.DisplayInfo();
-                    else
-                        Console.WriteLine("Список пустой или текущий элемент не выбран");
-                    break;
-                case "8":
-                    UpdateCurrentShip();
-                    break;
-                case "9":
-                    shipList.SortByDisplacement(true);
-                    break;
-                case "10":
-                    shipList.SortByDisplacement(false);
-                    break;
-                case "11":
-                    shipList.PrintAllShips();
-                    break;
-                case "12":
-                    shipList.SaveToFile(DataFilePath);
-                    break;
-                case "13":
-                    shipList.LoadFromFile(DataFilePath);
-                    break;
-                case "14":
-                    shipList.LinqQueries();
-                    break;
-                case "15":
-                    shipList.SaveToFile(DataFilePath);
-                    return;
-                default:
-                    Console.WriteLine("Неправильный выбор");
-                    break;
+                Console.WriteLine(element);
             }
         }
-    }
 
-    private void AddShip()
-    {
-        string name;
-        while (true)
+        public static void Print(IEnumerable<string> elements)
         {
-            Console.Write("Введите название корабля: ");
-            name = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(name))
+            foreach (var element in elements)
             {
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Ошибка: Название корабля не может быть пустым.");
+                Console.WriteLine(element);
             }
         }
-
-        double displacement;
-        while (true)
-        {
-            Console.Write("Введите водоизмещение: ");
-            try
-            {
-                displacement = Convert.ToDouble(Console.ReadLine());
-                if (displacement > 0)
-                    break;
-                else
-                    Console.WriteLine("Ошибка: Введите положительное число для водоизмещения.");
-            }
-            catch
-            {
-                Console.WriteLine("Ошибка: Введите корректное число для водоизмещения.");
-            }
-        }
-
-        string type;
-        while (true)
-        {
-            Console.Write("Введите тип: ");
-            type = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(type))
-            {
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Ошибка: Тип корабля не может быть пустым.");
-            }
-        }
-
-        shipList.AddShip(new Ship(name, displacement, type));
-    }
-
-    private void UpdateCurrentShip()
-    {
-        string name;
-        while (true)
-        {
-            Console.Write("Введите новое название корабля: ");
-            name = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Ошибка: Название корабля не может быть пустым.");
-            }
-        }
-
-        double displacement;
-        while (true)
-        {
-            Console.Write("Введите новое водоизмещение: ");
-            try
-            {
-                displacement = Convert.ToDouble(Console.ReadLine());
-                if (displacement > 0)
-                    break;
-                else
-                    Console.WriteLine("Ошибка: Введите положительное число для водоизмещения.");
-            }
-            catch
-            {
-                Console.WriteLine("Ошибка: Введите корректное число для водоизмещения.");
-            }
-        }
-
-        string type;
-        while (true)
-        {
-            Console.Write("Введите новый тип: ");
-            type = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(type))
-            {
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Ошибка: Тип корабля не может быть пустым.");
-            }
-        }
-
-        shipList.UpdateCurrentShip(name, displacement, type);
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        MyApplication app = new MyApplication();
-        app.Run();
     }
 }
