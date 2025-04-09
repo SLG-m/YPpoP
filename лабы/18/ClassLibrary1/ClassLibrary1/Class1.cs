@@ -17,7 +17,7 @@ namespace FunctionLibrary
             }
             else if (x > -6 && x <= 0)
             {
-                // Линейное убывание от (-6, 0) до (0, -6) — наклон -1
+                // Линейное убывание от (-6, 0] до [0, -6) — наклон -1
                 return -0.5 * (x + 6);
             }
             else if (x > 0 && x <= 3)
@@ -27,7 +27,7 @@ namespace FunctionLibrary
             }
             else if (x > 3 && x <= 6)
             {
-                // Часть окружности: центр (6, 0), радиус 3
+                // Часть окружности: центр [6, 0), радиус 3
                 double underRoot = 9 - Math.Pow(x - 6, 2);
                 return underRoot >= 0 ? Math.Sqrt(underRoot) : double.NaN;
             }
