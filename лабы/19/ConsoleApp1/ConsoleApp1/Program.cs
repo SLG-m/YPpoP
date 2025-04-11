@@ -79,9 +79,10 @@ class Program
 
         // Сортировка по водоизмещению (по убыванию)
         Console.WriteLine("\nСортировка по водоизмещению (по убыванию):");
-        query3 = from ship in ships
-                    orderby ship.Displacement descending
-                    select ship;
+        //query3 = from ship in ships
+        //            orderby ship.Displacement descending
+        //            select ship;
+        query3 = ships.OrderByDescending(s => s.Displacement);        
         Print(query3);
 
         // Агрегатные операции
