@@ -57,7 +57,6 @@ namespace WinFormsApp1
             {
                 LinkedList<Ship> ships = LoadShipsFromFile(filePath);
 
-                // Вариант 2: Ручное заполнение (если нужен именно LinkedList)
                 dataGridView1.Rows.Clear();
                 foreach (Ship ship in ships)
                 {

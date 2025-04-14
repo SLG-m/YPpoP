@@ -40,9 +40,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(95, 343);
+            button1.Location = new Point(79, 307);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(107, 40);
             button1.TabIndex = 0;
             button1.Text = "Пременить";
             button1.UseVisualStyleBackColor = true;
@@ -51,47 +51,50 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(45, 56);
+            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label1.Location = new Point(16, 24);
             label1.Name = "label1";
-            label1.Size = new Size(108, 15);
+            label1.Size = new Size(264, 37);
             label1.TabIndex = 1;
             label1.Text = "Название корабля";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 172);
+            label2.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label2.Location = new Point(16, 117);
             label2.Name = "label2";
-            label2.Size = new Size(98, 15);
+            label2.Size = new Size(239, 37);
             label2.TabIndex = 2;
             label2.Text = "Водоизмещение";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(56, 267);
+            label3.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label3.Location = new Point(95, 212);
             label3.Name = "label3";
-            label3.Size = new Size(27, 15);
+            label3.Size = new Size(65, 37);
             label3.TabIndex = 2;
             label3.Text = "Тип";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(56, 96);
+            textBox1.Location = new Point(56, 81);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(158, 23);
             textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(56, 199);
+            textBox2.Location = new Point(56, 171);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(158, 23);
             textBox2.TabIndex = 4;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(56, 296);
+            textBox3.Location = new Point(56, 263);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(158, 23);
             textBox3.TabIndex = 5;

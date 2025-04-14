@@ -99,21 +99,21 @@
             // добавитьToolStripMenuItem
             // 
             добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            добавитьToolStripMenuItem.Size = new Size(180, 22);
+            добавитьToolStripMenuItem.Size = new Size(128, 22);
             добавитьToolStripMenuItem.Text = "Добавить";
             добавитьToolStripMenuItem.Click += добавитьToolStripMenuItem_Click;
             // 
             // изменитьToolStripMenuItem
             // 
             изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            изменитьToolStripMenuItem.Size = new Size(180, 22);
+            изменитьToolStripMenuItem.Size = new Size(128, 22);
             изменитьToolStripMenuItem.Text = "Изменить";
             изменитьToolStripMenuItem.Click += изменитьToolStripMenuItem_Click;
             // 
             // удалитьToolStripMenuItem
             // 
             удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            удалитьToolStripMenuItem.Size = new Size(180, 22);
+            удалитьToolStripMenuItem.Size = new Size(128, 22);
             удалитьToolStripMenuItem.Text = "Удалить";
             удалитьToolStripMenuItem.Click += удалитьToolStripMenuItem_Click;
             // 
