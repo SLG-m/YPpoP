@@ -28,7 +28,7 @@
         </Menu>
 
         <DataGrid x:Name="ShipsDataGrid" Grid.Row="1" AutoGenerateColumns="False" 
-                  CanUserAddRows="False" SelectionMode="Single" SelectionUnit="FullRow">
+                  CanUserAddRows="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название корабля" Binding="{Binding Name}" Width="*"/>
                 <DataGridTextColumn Header="Водоизмещение" Binding="{Binding Vodoizmesc}" Width="*"/>

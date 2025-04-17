@@ -9,13 +9,13 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="199*" />
         </Grid.ColumnDefinitions>
-        <RadioButton x:Name="radioButton1" Content="RadioButton" HorizontalAlignment="Left" Margin="39,202,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <RadioButton x:Name="radioButton2" Content="RadioButton" HorizontalAlignment="Left" Margin="129,202,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <RadioButton x:Name="radioButton1"   Content="Список №1" HorizontalAlignment="Left" Margin="49,202,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <RadioButton x:Name="radioButton2" Content="Список №2" HorizontalAlignment="Left" Margin="129,202,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="67,82,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="67,142,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="65,233,0,0" VerticalAlignment="Top" Click="button1_Click" Grid.Column="1" Width="124"/>
+        <Button x:Name="button1" Content="Добавить" HorizontalAlignment="Left" Margin="65,233,0,0" VerticalAlignment="Top" Click="button1_Click" Grid.Column="1" Width="124"/>
         <ListBox x:Name="listBox1" Margin="51,293,52,0" MouseDoubleClick="listBox1_DoubleClick" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -51,7 +51,7 @@ namespace WinFormsApp1
 
         private void îòêğûòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string filePath = @"ships.bin";
+            string filePath = "ships.bin";
 
             try
             {

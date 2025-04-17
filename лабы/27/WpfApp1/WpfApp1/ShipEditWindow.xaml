@@ -8,25 +8,27 @@
         Title="Редактирование корабля" Height="300" Width="300">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="24"/>
+            <RowDefinition Height="Auto" MinHeight="29.96"/>
+            <RowDefinition Height="Auto" MinHeight="24"/>
+            <RowDefinition Height="Auto" MinHeight="29.96"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="81*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Название корабля:" FontWeight="Bold" Grid.Row="0"/>
+        <Label Content="Название корабля:" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,28" Grid.RowSpan="2"/>
         <TextBox x:Name="NameTextBox" Grid.Row="1" Margin="0,0,0,10" MaxLength="50"/>
 
-        <Label Content="Водоизмещение:" FontWeight="Bold" Grid.Row="2"/>
+        <Label Content="Водоизмещение:" FontWeight="Bold" Grid.Row="2" Margin="0,0,0,28" Grid.RowSpan="2"/>
         <TextBox x:Name="VodoizmescTextBox" Grid.Row="3" Margin="0,0,0,10" MaxLength="50" 
                  PreviewTextInput="VodoizmescTextBox_PreviewTextInput"/>
 
-        <Label Content="Тип:" FontWeight="Bold" Grid.Row="4"/>
-        <TextBox x:Name="TypeTextBox" Grid.Row="4" Margin="0,30,0,79" MaxLength="50"/>
+        <Label Content="Тип:" FontWeight="Bold" Grid.Row="4" Grid.RowSpan="3"/>
+        <TextBox x:Name="TypeTextBox" Grid.Row="5" Margin="0,5,0,22" MaxLength="50"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="6">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="6" Margin="110,46,0,0" Width="170">
             <Button Content="Применить" Width="80" Margin="0,0,10,0" Click="ApplyButton_Click"/>
             <Button Content="Отменить" Width="80" Click="CancelButton_Click"/>
         </StackPanel>
