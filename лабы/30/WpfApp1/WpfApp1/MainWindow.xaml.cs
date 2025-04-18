@@ -11,8 +11,12 @@ namespace WpfApp1
     {
         private TranslateTransform3D _translation;
         private TranslateTransform3D _textTranslation;
-        private AxisAngleRotation3D _rotationAngle;
-        private RotateTransform3D _rotation;
+        private AxisAngleRotation3D _rotationX;
+        private AxisAngleRotation3D _rotationY;
+        private AxisAngleRotation3D _rotationZ;
+        private RotateTransform3D _rotateX;
+        private RotateTransform3D _rotateY;
+        private RotateTransform3D _rotateZ;
         private double _time;
 
         public MainWindow()
@@ -73,19 +77,26 @@ namespace WpfApp1
             // Градиентный материал
             var gradientBrush = new LinearGradientBrush();
             gradientBrush.GradientStops.Add(new GradientStop(Colors.CadetBlue, 0));
-            gradientBrush.GradientStops.Add(new GradientStop(Colors.SteelBlue, 1));
+            gradientBrush.GradientStops.Add(new GradientStop(Colors.MediumPurple, 1));
             var material = new DiffuseMaterial(gradientBrush);
 
             var model = new GeometryModel3D(mesh, material);
 
-            // Трансформации: вращение + смещение
-            _rotationAngle = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
-            _rotation = new RotateTransform3D(_rotationAngle);
+            // Трансформации: вращение по трем осям + смещение
+            _rotationX = new AxisAngleRotation3D(new Vector3D(1, 0, 0), 0);
+            _rotationY = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
+            _rotationZ = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
+
+            _rotateX = new RotateTransform3D(_rotationX);
+            _rotateY = new RotateTransform3D(_rotationY);
+            _rotateZ = new RotateTransform3D(_rotationZ);
 
             _translation = new TranslateTransform3D(-1, 0, 0); // начальное положение
 
             var transformGroup = new Transform3DGroup();
-            transformGroup.Children.Add(_rotation);
+            transformGroup.Children.Add(_rotateX);
+            transformGroup.Children.Add(_rotateY);
+            transformGroup.Children.Add(_rotateZ);
             transformGroup.Children.Add(_translation);
 
             model.Transform = transformGroup;
@@ -129,8 +140,10 @@ namespace WpfApp1
             _translation.OffsetX = -1 + offset;
             _textTranslation.OffsetX = 1 + offset;
 
-            // Анимация вращения
-            _rotationAngle.Angle = (_rotationAngle.Angle + 1) % 360;
+            // Анимация вращения по всем осям
+            _rotationX.Angle = (_rotationX.Angle + 1) % 360;
+            _rotationY.Angle = (_rotationY.Angle + 1.5) % 360; // немного разная скорость для Y
+            _rotationZ.Angle = (_rotationZ.Angle + 0.8) % 360; // и для Z
         }
     }
 
