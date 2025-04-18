@@ -64,7 +64,7 @@ namespace WpfApp1
                 mesh.TriangleIndices.Add(lower1); mesh.TriangleIndices.Add(upper2); mesh.TriangleIndices.Add(lower2);
             }
 
-            var material = new DiffuseMaterial(new SolidColorBrush(Colors.SteelBlue));
+            var material = new DiffuseMaterial(new SolidColorBrush(Colors.MediumPurple));
             var model = new GeometryModel3D(mesh, material);
 
             // Добавим небольшой поворот
