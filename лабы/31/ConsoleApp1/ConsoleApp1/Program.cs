@@ -180,14 +180,33 @@ public class MyApplication
                 DataTable files = _database.ExecuteSelect(query);
 
                 Console.WriteLine("\nСписок файлов:");
-
+                Console.WriteLine("----------------------------------------------------------");
+                Console.WriteLine("| Имя файла          | Размер | Дата       | Время  |");
+                Console.WriteLine("----------------------------------------------------------");
 
                 foreach (DataRow row in files.Rows)
                 {
-                    Console.WriteLine($"| {row["FileName"].ToString().PadRight(19)} | {row["FileSize"].ToString().PadRight(6)} | {row["CreationDate"].ToString().PadRight(9)} | {row["CreationTime"].ToString().PadRight(5)} |");
+                    // Форматируем дату и время
+                    DateTime dateValue;
+                    DateTime timeValue;
+
+                    string formattedDate = row["CreationDate"].ToString();
+                    string formattedTime = row["CreationTime"].ToString();
+
+                    if (DateTime.TryParse(row["CreationDate"].ToString(), out dateValue))
+                    {
+                        formattedDate = dateValue.ToString("dd.MM.yyyy");
+                    }
+
+                    if (DateTime.TryParse(row["CreationTime"].ToString(), out timeValue))
+                    {
+                        formattedTime = timeValue.ToString("HH:mm");
+                    }
+
+                    Console.WriteLine($"| {row["FileName"].ToString().PadRight(19)} | {row["FileSize"].ToString().PadRight(6)} | {formattedDate.PadRight(10)} | {formattedTime.PadRight(5)} |");
                 }
 
-                Console.WriteLine("--------------------------------------------------");
+                Console.WriteLine("----------------------------------------------------------");
             }
             catch (Exception ex)
             {
