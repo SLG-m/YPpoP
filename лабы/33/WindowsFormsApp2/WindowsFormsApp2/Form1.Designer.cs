@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp2
+﻿using System.Windows.Forms;
+
+namespace WindowsFormsApp2
 {
     partial class Form1
     {
@@ -35,10 +37,6 @@
             System.Windows.Forms.Label fileSizeLabel;
             System.Windows.Forms.Label creationDateLabel;
             System.Windows.Forms.Label creationTimeLabel;
-            this.database1DataSet = new WindowsFormsApp2.Database1DataSet();
-            this.filesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.filesTableAdapter = new WindowsFormsApp2.Database1DataSetTableAdapters.FilesTableAdapter();
-            this.tableAdapterManager = new WindowsFormsApp2.Database1DataSetTableAdapters.TableAdapterManager();
             this.filesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -53,47 +51,32 @@
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.filesBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.filesDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.кодTextBox = new System.Windows.Forms.TextBox();
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.fileSizeTextBox = new System.Windows.Forms.TextBox();
             this.creationDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.creationTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.filesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.database1DataSet = new WindowsFormsApp2.Database1DataSet();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filesTableAdapter = new WindowsFormsApp2.Database1DataSetTableAdapters.FilesTableAdapter();
+            this.tableAdapterManager = new WindowsFormsApp2.Database1DataSetTableAdapters.TableAdapterManager();
+            this.button1 = new System.Windows.Forms.Button();
             кодLabel = new System.Windows.Forms.Label();
             fileNameLabel = new System.Windows.Forms.Label();
             fileSizeLabel = new System.Windows.Forms.Label();
             creationDateLabel = new System.Windows.Forms.Label();
             creationTimeLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.filesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filesBindingNavigator)).BeginInit();
             this.filesBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // database1DataSet
-            // 
-            this.database1DataSet.DataSetName = "Database1DataSet";
-            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // filesBindingSource
-            // 
-            this.filesBindingSource.DataMember = "Files";
-            this.filesBindingSource.DataSource = this.database1DataSet;
-            // 
-            // filesTableAdapter
-            // 
-            this.filesTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.FilesTableAdapter = this.filesTableAdapter;
-            this.tableAdapterManager.UpdateOrder = WindowsFormsApp2.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // filesBindingNavigator
             // 
@@ -152,6 +135,7 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Положение";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -160,14 +144,14 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(43, 15);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(43, 22);
             this.bindingNavigatorCountItem.Text = "для {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Общее число элементов";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 6);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -175,7 +159,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 20);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem.Text = "Переместить вперед";
             // 
             // bindingNavigatorMoveLastItem
@@ -184,13 +168,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 20);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "Переместить в конец";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 6);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -207,7 +191,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 20);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Удалить";
             // 
             // filesBindingNavigatorSaveItem
@@ -215,7 +199,7 @@
             this.filesBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.filesBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("filesBindingNavigatorSaveItem.Image")));
             this.filesBindingNavigatorSaveItem.Name = "filesBindingNavigatorSaveItem";
-            this.filesBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 23);
+            this.filesBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.filesBindingNavigatorSaveItem.Text = "Сохранить данные";
             this.filesBindingNavigatorSaveItem.Click += new System.EventHandler(this.filesBindingNavigatorSaveItem_Click);
             // 
@@ -232,38 +216,9 @@
             this.filesDataGridView.DataSource = this.filesBindingSource;
             this.filesDataGridView.Location = new System.Drawing.Point(12, 40);
             this.filesDataGridView.Name = "filesDataGridView";
+            this.filesDataGridView.ReadOnly = true;
             this.filesDataGridView.Size = new System.Drawing.Size(776, 220);
             this.filesDataGridView.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Код";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Код";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "FileName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "FileName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "FileSize";
-            this.dataGridViewTextBoxColumn3.HeaderText = "FileSize";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "CreationDate";
-            this.dataGridViewTextBoxColumn4.HeaderText = "CreationDate";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "CreationTime";
-            this.dataGridViewTextBoxColumn5.HeaderText = "CreationTime";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // кодLabel
             // 
@@ -349,12 +304,78 @@
             this.creationTimeDateTimePicker.Name = "creationTimeDateTimePicker";
             this.creationTimeDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.creationTimeDateTimePicker.TabIndex = 11;
+            // Установите свойство Format на Time
+            creationTimeDateTimePicker.Format = DateTimePickerFormat.Time;
+
+            // Установите свойство ShowUpDown в true для удобного выбора времени
+            creationTimeDateTimePicker.ShowUpDown = true;
+            // 
+            // filesBindingSource
+            // 
+            this.filesBindingSource.DataMember = "Files";
+            this.filesBindingSource.DataSource = this.database1DataSet;
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Код";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Код";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "FileName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "FileName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "FileSize";
+            this.dataGridViewTextBoxColumn3.HeaderText = "FileSize";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "CreationDate";
+            this.dataGridViewTextBoxColumn4.HeaderText = "CreationDate";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "CreationTime";
+            this.dataGridViewTextBoxColumn5.HeaderText = "CreationTime";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // filesTableAdapter
+            // 
+            this.filesTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.FilesTableAdapter = this.filesTableAdapter;
+            this.tableAdapterManager.UpdateOrder = WindowsFormsApp2.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(80, 344);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(236, 123);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Нова сверх";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 500);
+            this.Controls.Add(this.button1);
             this.Controls.Add(кодLabel);
             this.Controls.Add(this.кодTextBox);
             this.Controls.Add(fileNameLabel);
@@ -370,12 +391,12 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.filesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.filesBindingNavigator)).EndInit();
             this.filesBindingNavigator.ResumeLayout(false);
             this.filesBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,6 +432,7 @@
         private System.Windows.Forms.TextBox fileSizeTextBox;
         private System.Windows.Forms.DateTimePicker creationDateDateTimePicker;
         private System.Windows.Forms.DateTimePicker creationTimeDateTimePicker;
+        private System.Windows.Forms.Button button1;
     }
 }
 
