@@ -4,7 +4,7 @@ using DeviceFileLoggerWinForms.Data;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using WinFormsApp1;
+using WinFormsApp1.Forms;
 
 namespace WinFormsApp1
 {
@@ -13,9 +13,9 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
-            LoadMFiles();
+            LoadFiles();
         }
-        private void LoadMFiles()
+        private void LoadFiles()
         {
             using var db = new FilesContext();
             dataGridView1.DataSource = db.Files
@@ -33,9 +33,21 @@ namespace WinFormsApp1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            var form = new Form2();
+            if (form.ShowDialog() == DialogResult.OK)
+                LoadFiles();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

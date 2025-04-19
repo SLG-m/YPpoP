@@ -51,9 +51,9 @@
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 1;
-            button1.Text = "button1";
+            button1.Text = "Добавить";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += this.button1_Click_1;
+            button1.Click += button1_Click_1;
             // 
             // button2
             // 
@@ -61,8 +61,9 @@
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 2;
-            button2.Text = "button2";
+            button2.Text = "Удалить";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -70,8 +71,9 @@
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 3;
-            button3.Text = "button3";
+            button3.Text = "Изменитт";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -79,8 +81,9 @@
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 4;
-            button4.Text = "button4";
+            button4.Text = "Обновить";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += this.button4_Click;
             // 
             // Form1
             // 
