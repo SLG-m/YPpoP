@@ -77,7 +77,7 @@ namespace WpfApp1
             // Градиентный материал
             var gradientBrush = new LinearGradientBrush();
             gradientBrush.GradientStops.Add(new GradientStop(Colors.CadetBlue, 0));
-            gradientBrush.GradientStops.Add(new GradientStop(Colors.MediumPurple, 1));
+            gradientBrush.GradientStops.Add(new GradientStop(Colors.Aqua, 1));
             var material = new DiffuseMaterial(gradientBrush);
 
             var model = new GeometryModel3D(mesh, material);
@@ -86,7 +86,7 @@ namespace WpfApp1
             _rotationX = new AxisAngleRotation3D(new Vector3D(1, 0, 0), 0);
             _rotationY = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
             _rotationZ = new AxisAngleRotation3D(new Vector3D(0, 0, 1), 0);
-
+            
             _rotateX = new RotateTransform3D(_rotationX);
             _rotateY = new RotateTransform3D(_rotationY);
             _rotateZ = new RotateTransform3D(_rotationZ);
@@ -133,7 +133,7 @@ namespace WpfApp1
 
         private void Animate(object sender, EventArgs e)
         {
-            _time += 0.03;
+            _time += 0.1;
 
             // Анимация смещения
             double offset = Math.Sin(_time) * 2.0;
@@ -141,9 +141,9 @@ namespace WpfApp1
             _textTranslation.OffsetX = 1 + offset;
 
             // Анимация вращения по всем осям
-            _rotationX.Angle = (_rotationX.Angle + 1) % 360;
+            _rotationX.Angle = (_rotationX.Angle + 5) % 360;
             _rotationY.Angle = (_rotationY.Angle + 1.5) % 360; // немного разная скорость для Y
-            _rotationZ.Angle = (_rotationZ.Angle + 0.8) % 360; // и для Z
+            _rotationZ.Angle = (_rotationZ.Angle + 3) % 360; // и для Z
         }
     }
 
