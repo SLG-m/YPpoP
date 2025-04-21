@@ -37,8 +37,8 @@ namespace WindowsFormsApp2
             System.Windows.Forms.Label creationDateLabel;
             System.Windows.Forms.Label creationTimeLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.filesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.filesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -55,6 +55,11 @@ namespace WindowsFormsApp2
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.filesBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.filesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.кодTextBox = new System.Windows.Forms.TextBox();
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.fileSizeTextBox = new System.Windows.Forms.TextBox();
@@ -63,11 +68,6 @@ namespace WindowsFormsApp2
             this.filesTableAdapter = new WindowsFormsApp2.Database1DataSetTableAdapters.FilesTableAdapter();
             this.tableAdapterManager = new WindowsFormsApp2.Database1DataSetTableAdapters.TableAdapterManager();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             кодLabel = new System.Windows.Forms.Label();
@@ -192,6 +192,7 @@ namespace WindowsFormsApp2
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Удалить";
+           // this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -261,6 +262,7 @@ namespace WindowsFormsApp2
             this.filesBindingNavigatorSaveItem.Name = "filesBindingNavigatorSaveItem";
             this.filesBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.filesBindingNavigatorSaveItem.Text = "Сохранить данные";
+            this.filesBindingNavigatorSaveItem.Visible = false;
             this.filesBindingNavigatorSaveItem.Click += new System.EventHandler(this.filesBindingNavigatorSaveItem_Click);
             // 
             // filesDataGridView
@@ -283,6 +285,47 @@ namespace WindowsFormsApp2
             this.filesDataGridView.ReadOnly = true;
             this.filesDataGridView.Size = new System.Drawing.Size(856, 323);
             this.filesDataGridView.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Код";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Код";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "FileName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "FileName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "FileSize";
+            this.dataGridViewTextBoxColumn3.HeaderText = "FileSize";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "CreationDate";
+            dataGridViewCellStyle1.Format = "d";
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTextBoxColumn4.HeaderText = "CreationDate";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "CreationTime";
+            dataGridViewCellStyle2.Format = "T";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn5.HeaderText = "CreationTime";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // кодTextBox
             // 
@@ -346,47 +389,6 @@ namespace WindowsFormsApp2
             this.button1.Text = "Нова сверх";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Код";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Код";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "FileName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "FileName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "FileSize";
-            this.dataGridViewTextBoxColumn3.HeaderText = "FileSize";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "CreationDate";
-            dataGridViewCellStyle9.Format = "d";
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn4.HeaderText = "CreationDate";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "CreationTime";
-            dataGridViewCellStyle10.Format = "T";
-            dataGridViewCellStyle10.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn5.HeaderText = "CreationTime";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // groupBox1
             // 
